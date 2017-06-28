@@ -6,8 +6,7 @@ public class SplashScreenController : MonoBehaviour {
 	public AudioClip introMusic;
 
 	void Start () {
-		AudioSource.PlayClipAtPoint(introMusic, transform.position);
-		Invoke("LoadStartScreen", 5);
+		Invoke("LoadStartScreen", 4.5f);
 	}
 	
 	void LoadStartScreen()
