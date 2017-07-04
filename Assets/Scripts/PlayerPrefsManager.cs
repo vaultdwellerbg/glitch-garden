@@ -11,7 +11,7 @@ public class PlayerPrefsManager : MonoBehaviour {
 
 	public static void SetMasterVolume(float volume)
 	{
-		if (volume > 0f && volume < 1f)
+		if (volume >= 0f && volume <= 1f)
 		{
 			PlayerPrefs.SetFloat(MASTER_VOLUME_KEY, volume);
 		}
@@ -23,7 +23,8 @@ public class PlayerPrefsManager : MonoBehaviour {
 	
 	public static float GetMasterVolume()
 	{
-		return PlayerPrefs.GetFloat(MASTER_VOLUME_KEY);
+		float volume = PlayerPrefs.GetFloat(MASTER_VOLUME_KEY);
+		return (volume == 0f) ? 1f : volume;
 	}
 	
 	#endregion
@@ -64,21 +65,22 @@ public class PlayerPrefsManager : MonoBehaviour {
 	
 	#region difficulty
 	
-	public static void SetDifficulty(float difficulty)
+	public static void SetDifficulty(int difficulty)
 	{
-		if(difficulty >= 0f && difficulty <= 1f)
+		if(difficulty >= 1 && difficulty <= 3)
 		{
-			PlayerPrefs.SetFloat(DIFFICULTY_KEY, difficulty);
+			PlayerPrefs.SetInt(DIFFICULTY_KEY, difficulty);
 		}
 		else
 		{
-			Debug.LogError("Difficulty out of range (0f - 1f)");
+			Debug.LogError("Difficulty out of range (1 - 3)");
 		}
 	}
 	
-	public static float GetDifficulty()
+	public static int GetDifficulty()
 	{
-		return PlayerPrefs.GetFloat(DIFFICULTY_KEY);
+		int difficulty = PlayerPrefs.GetInt(DIFFICULTY_KEY);
+		return (difficulty == 0) ? 2 : difficulty;
 	}
 	
 	#endregion

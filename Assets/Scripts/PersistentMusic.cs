@@ -10,7 +10,8 @@ public class PersistentMusic : MonoBehaviour {
 	void Awake() 
 	{
 		GameObject.DontDestroyOnLoad(gameObject);
-		music = GetComponent<AudioSource>();	
+		music = GetComponent<AudioSource>();
+		SetVolume(PlayerPrefsManager.GetMasterVolume());
 		PlayClip(0);			
 	}
 	
@@ -27,5 +28,10 @@ public class PersistentMusic : MonoBehaviour {
 		{
 			PlayClip(level);
 		}
+	}
+	
+	public void SetVolume(float volume)
+	{
+		music.volume = volume;
 	}	
 }
