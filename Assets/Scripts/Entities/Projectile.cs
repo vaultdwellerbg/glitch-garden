@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Attacker : MonoBehaviour {
-
-	[Range (-1f, 1.5f)]
-	public float walkSpeed;
+public class Projectile : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,6 +10,11 @@ public class Attacker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Translate(Vector3.left * walkSpeed * Time.deltaTime);
+	
 	}
+	
+	void OnTriggerEnter2D(Collider2D col)
+	{
+		Debug.Log (name + " collides with " + col.name);
+	}	
 }
