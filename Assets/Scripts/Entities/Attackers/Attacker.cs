@@ -3,13 +3,15 @@ using System.Collections;
 
 public class Attacker : MonoBehaviour {
 
-	[Range (-1f, 1.5f)]
-	public float speed;
-
+	private float speed;
+	private GameObject currentTarget;
+	private Animator animator;
+	
 	void Start () 
 	{
 		Rigidbody2D myRigidBody = gameObject.AddComponent<Rigidbody2D>();
 		myRigidBody.isKinematic = true;
+		animator = gameObject.GetComponent<Animator>();
 	}
 	
 	void Update () 
@@ -25,5 +27,11 @@ public class Attacker : MonoBehaviour {
 	public void StrikeCurrentTarget(float damage)
 	{
 		Debug.Log("Target has been hit for " + damage + " damage.");
+	}
+	
+	public void Attack(GameObject obj)
+	{
+		currentTarget = obj;
+		animator.SetBool("isAttacking", true);
 	}
 }
