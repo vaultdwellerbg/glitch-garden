@@ -4,7 +4,7 @@ using System.Collections;
 public class Attacker : MonoBehaviour {
 
 	[Range (-1f, 1.5f)]
-	public float walkSpeed;
+	public float speed;
 
 	void Start () 
 	{
@@ -14,6 +14,16 @@ public class Attacker : MonoBehaviour {
 	
 	void Update () 
 	{
-		transform.Translate(Vector3.left * walkSpeed * Time.deltaTime);
+		transform.Translate(Vector3.left * speed * Time.deltaTime);
+	}
+	
+	public void SetSpeed(float speed)
+	{
+		this.speed = speed;
+	}
+	
+	public void StrikeCurrentTarget(float damage)
+	{
+		Debug.Log("Target has been hit for " + damage + " damage.");
 	}
 }
