@@ -3,18 +3,10 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	
-	void OnTriggerEnter2D(Collider2D col)
+	public float speed, damage;
+
+	void Update () 
 	{
-		//Debug.Log (name + " collides with " + col.name);
-	}	
+		transform.Translate(Vector3.right * speed * Time.deltaTime);
+	}
 }
