@@ -5,12 +5,10 @@ using System.Collections;
 public class Lizard : MonoBehaviour {
 
 	private Attacker attacker;
-	private Animator animator;
 
-	void Start () 
+	void Start() 
 	{
 		attacker = GetComponent<Attacker>();
-		animator = GetComponent<Animator>();
 	}
 	
 	void OnTriggerEnter2D(Collider2D col)
@@ -20,4 +18,9 @@ public class Lizard : MonoBehaviour {
 		
 		attacker.Attack(colliderObject);
 	}
+	
+	public void Strike()
+	{
+		attacker.StrikeCurrentTarget(5);
+	}	
 }

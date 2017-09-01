@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof (Health))]
 public class Attacker : MonoBehaviour {
 
 	private float speed;
@@ -26,8 +27,20 @@ public class Attacker : MonoBehaviour {
 	
 	public void StrikeCurrentTarget(float damage)
 	{
-		Debug.Log("Target has been hit for " + damage + " damage.");
+		Health targetHealth = currentTarget.GetComponent<Health>();
+		targetHealth.DealDamage(damage);
+		
+		if (targetHealth.value <= 0)
+		{
+			StopAttack();
+		}
+		
 	}
+	
+	private void StopAttack()
+	{
+		animator.SetBool("isAttacking", false);
+	}	
 	
 	public void Attack(GameObject obj)
 	{

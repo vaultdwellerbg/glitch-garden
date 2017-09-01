@@ -27,4 +27,9 @@ public class Fox : MonoBehaviour {
 			attacker.Attack(colliderObject);
 		}
 	}
+	
+	public void Strike()
+	{
+		attacker.StrikeCurrentTarget(3);
+	}
 }
