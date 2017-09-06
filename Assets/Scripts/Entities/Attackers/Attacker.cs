@@ -34,7 +34,6 @@ public class Attacker : MonoBehaviour {
 		{
 			StopAttack();
 		}
-		
 	}
 	
 	private void StopAttack()
