@@ -21,6 +21,6 @@ public class Lizard : MonoBehaviour {
 	
 	public void Strike()
 	{
-		attacker.StrikeCurrentTarget(5);
+		attacker.StrikeCurrentTarget(10);
 	}	
 }

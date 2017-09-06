@@ -30,6 +30,6 @@ public class Fox : MonoBehaviour {
 	
 	public void Strike()
 	{
-		attacker.StrikeCurrentTarget(3);
+		attacker.StrikeCurrentTarget(5);
 	}
 }
