@@ -3,7 +3,20 @@ using System.Collections;
 
 public class Shooter : MonoBehaviour {
 
-	public GameObject projectile, projectileParent;
+	public GameObject projectile;
+	
+	private GameObject projectileParent;
+	private const string PROJECTILES_PARENT_NAME = "Projectiles";
+			
+	private void Start()
+	{
+		projectileParent = GameObject.Find(PROJECTILES_PARENT_NAME);
+		
+		if(!projectileParent)
+		{
+			projectileParent = new GameObject (PROJECTILES_PARENT_NAME);
+		}
+	}
 	
 	private void Fire()
 	{	
