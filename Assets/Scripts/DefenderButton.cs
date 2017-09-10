@@ -4,9 +4,10 @@ using System.Collections;
 public class DefenderButton : MonoBehaviour {
 
 	public static GameObject selectedDefender;
+	public GameObject linkedDefender;
 
 	private DefenderButton[] buttons;
-	
+
 	void Start()
 	{
 		buttons = GameObject.FindObjectsOfType<DefenderButton>();
@@ -28,6 +29,6 @@ public class DefenderButton : MonoBehaviour {
 	void SelectDefender()
 	{
 		GetComponent<SpriteRenderer>().color = Color.white;
-		selectedDefender = GameObject.Find(gameObject.name);
+		selectedDefender = linkedDefender;
 	}
 }
