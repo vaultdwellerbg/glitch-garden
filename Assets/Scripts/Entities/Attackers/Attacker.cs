@@ -4,6 +4,9 @@ using System.Collections;
 [RequireComponent (typeof (Health))]
 public class Attacker : MonoBehaviour {
 
+	[Tooltip("Number of seconds between creating new attacker")]
+	public float secondsToShow;
+
 	private float speed;
 	private GameObject currentTarget;
 	private Animator animator;
