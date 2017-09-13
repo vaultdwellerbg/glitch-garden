@@ -21,6 +21,11 @@ public class Attacker : MonoBehaviour {
 	void Update () 
 	{
 		transform.Translate(Vector3.left * speed * Time.deltaTime);
+		
+		if (!currentTarget)
+		{
+			StopAttack();
+		}		
 	}
 	
 	public void SetSpeed(float speed)
@@ -29,14 +34,9 @@ public class Attacker : MonoBehaviour {
 	}
 	
 	public void StrikeCurrentTarget(float damage)
-	{
+	{		
 		Health targetHealth = currentTarget.GetComponent<Health>();
 		targetHealth.DealDamage(damage);
-		
-		if (targetHealth.value <= 0)
-		{
-			StopAttack();
-		}
 	}
 	
 	private void StopAttack()
