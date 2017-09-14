@@ -12,6 +12,8 @@ public class LoseCollider : MonoBehaviour {
 
 	void OnTriggerEnter2D()
 	{
+		if (GameObject.FindObjectOfType<LevelProgress>().IsLevelCompleted()) return;
+		
 		levelManager.LoadLevel("Lose");
 	}
 }

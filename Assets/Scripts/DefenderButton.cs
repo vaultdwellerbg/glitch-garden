@@ -15,6 +15,8 @@ public class DefenderButton : MonoBehaviour {
 
 	void OnMouseDown()
 	{
+		if (GameObject.FindObjectOfType<LevelProgress>().IsLevelCompleted()) return;
+	
 		UnselectDefenders();
 		SelectDefender();
 	}

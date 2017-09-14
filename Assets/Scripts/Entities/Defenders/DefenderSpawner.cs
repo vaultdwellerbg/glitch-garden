@@ -23,6 +23,8 @@ public class DefenderSpawner : MonoBehaviour {
 
 	void OnMouseDown()
 	{
+		if (GameObject.FindObjectOfType<LevelProgress>().IsLevelCompleted()) return;
+	
 		GameObject selectedDefender = DefenderButton.selectedDefender;
 		if (selectedDefender) 
 		{
