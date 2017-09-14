@@ -5,14 +5,19 @@ public class DefenderSpawner : MonoBehaviour {
 
 	private GameObject parent;
 	private const string PARENT_NAME = "Defenders";
+	private StarsController starsController;
 
 	private void Start()
 	{
-		parent = GameObject.Find(PARENT_NAME);
-		
-		if(!parent)
-		{
-			parent = new GameObject(PARENT_NAME);
+		InitializeParent();
+		starsController = GameObject.FindObjectOfType<StarsController>();
+	}
+
+	void InitializeParent()
+	{
+		parent = GameObject.Find (PARENT_NAME);
+		if (!parent) {
+			parent = new GameObject (PARENT_NAME);
 		}
 	}
 
@@ -21,7 +26,21 @@ public class DefenderSpawner : MonoBehaviour {
 		GameObject selectedDefender = DefenderButton.selectedDefender;
 		if (selectedDefender) 
 		{
-			SpawnDefender(selectedDefender);
+			PurchaseDefender(selectedDefender);
+		}
+	}
+
+	void PurchaseDefender(GameObject defender)
+	{
+		int defenderPrice = defender.GetComponent<Defender> ().price;
+		StarsController.OperationStatus status = starsController.SpendStars(defenderPrice);
+		if (status == StarsController.OperationStatus.SUCCESS) 
+		{
+			SpawnDefender(defender);
+		}
+		else 
+		{
+			Debug.LogWarning ("Insufficient funds.");
 		}
 	}
 

@@ -5,7 +5,14 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Text))]
 public class StarsController : MonoBehaviour {
 
-	private int totalStars = 0;
+	public enum OperationStatus {SUCCESS, FAILIURE};
+
+	private int totalStars = 30;
+	
+	void Start()
+	{
+		UpdateStarDisplay();
+	}
 
 	public void AddStars(int amount)
 	{
@@ -13,12 +20,15 @@ public class StarsController : MonoBehaviour {
 		UpdateStarDisplay();
 	}
 	
-	public void SpendStars(int amount)
-	{
-		int newTotalAmmount = totalStars - amount;
-		if (newTotalAmmount < 0) return;
-		totalStars = newTotalAmmount;
-		UpdateStarDisplay();
+	public OperationStatus SpendStars(int amount)
+	{		
+		if (totalStars >= amount)
+		{
+			totalStars -= amount;
+			UpdateStarDisplay();
+			return OperationStatus.SUCCESS;
+		}
+		return OperationStatus.FAILIURE;
 	}	
 	
 	private void UpdateStarDisplay()
