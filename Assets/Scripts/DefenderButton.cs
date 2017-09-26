@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class DefenderButton : MonoBehaviour {
@@ -11,6 +12,17 @@ public class DefenderButton : MonoBehaviour {
 	void Start()
 	{
 		buttons = GameObject.FindObjectsOfType<DefenderButton>();
+		SetLinkedDefenderCostDisplay(GetLinkedDefenderPrice());
+	}
+	
+	private int GetLinkedDefenderPrice()
+	{
+		return linkedDefender.GetComponent<Defender>().price;
+	}
+	
+	private void SetLinkedDefenderCostDisplay(int cost)
+	{
+		transform.FindChild("Cost").GetComponent<Text>().text = cost.ToString();
 	}
 
 	void OnMouseDown()
