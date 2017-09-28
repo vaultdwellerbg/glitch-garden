@@ -7,9 +7,13 @@ public class MasterSpawner : MonoBehaviour {
 	
 	private Timer[] timers;
 	private Spawner[] spawners;
+	private LevelProgress levelProgress;
+	
+	private const int FINAL_ATTACK_TIMEOUT = 1;
 
 	void Start()
 	{
+		levelProgress = GameObject.FindObjectOfType<LevelProgress>();
 		InitTimers();	
 		InitSpawners();
 	}
@@ -18,7 +22,7 @@ public class MasterSpawner : MonoBehaviour {
 	{
 		timers = new Timer[attackerTypes.Length];
 		for (int i = 0; i < attackerTypes.Length; i++) {
-			timers [i] = new Timer (attackerTypes [i]);
+			timers [i] = new Timer (attackerTypes[i]);
 		}
 	}
 
@@ -32,10 +36,25 @@ public class MasterSpawner : MonoBehaviour {
 	
 	void Update()
 	{
+		if (levelProgress.GetRemainingTime() < 40)
+		{
+			StartFinalAttack();
+		}
+		SpawnAttackers();
+	}
+	
+	void StartFinalAttack()
+	{
+		for (int i = 0; i < timers.Length; i++) {
+			timers[i].SetTimeout(FINAL_ATTACK_TIMEOUT);
+		}
+	}
+
+	void SpawnAttackers ()
+	{
 		for (int i = 0; i < attackerTypes.Length; i++) {
-			if (timers[i].IsTimeToSpawn(Time.deltaTime))
-			{
-				SpawnAttacker(attackerTypes[i]);
+			if (timers [i].IsTimeToSpawn (Time.deltaTime)) {
+				SpawnAttacker (attackerTypes [i]);
 			}
 		}
 	}

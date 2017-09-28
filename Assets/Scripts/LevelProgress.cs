@@ -5,8 +5,8 @@ using System.Collections;
 public class LevelProgress : MonoBehaviour {
 
 	[Tooltip("Level runtime in seconds")]
-	private float levelRuntime = 120;
-	
+	private float levelRuntime = 120;	
+	private float timeSinceStart = 0f;	
 	private Slider levelProgressSlider;
 	private GameObject levelCompletedDisplay;
 	private AudioSource audioSource;
@@ -26,8 +26,9 @@ public class LevelProgress : MonoBehaviour {
 	{
 		if (levelCompleted) return;
 	
-		levelProgressSlider.value = Time.realtimeSinceStartup / levelRuntime;
-		if (Time.realtimeSinceStartup > levelRuntime) 
+		timeSinceStart += Time.deltaTime;
+		levelProgressSlider.value = timeSinceStart / levelRuntime;
+		if (timeSinceStart > levelRuntime) 
 		{
 			EndLevel();
 		}
@@ -49,5 +50,10 @@ public class LevelProgress : MonoBehaviour {
 	public bool IsLevelCompleted()
 	{
 		return levelCompleted;
+	}
+	
+	public float GetRemainingTime()
+	{
+		return levelRuntime - timeSinceStart;
 	}
 }

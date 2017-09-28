@@ -7,7 +7,7 @@ public class StarsController : MonoBehaviour {
 
 	public enum OperationStatus {SUCCESS, FAILIURE};
 
-	private int totalStars = 30;
+	private int totalStars = 60;
 	
 	void Start()
 	{

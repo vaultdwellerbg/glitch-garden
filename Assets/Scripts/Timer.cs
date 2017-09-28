@@ -21,4 +21,9 @@ public class Timer {
 		}
 		return false;
 	}
+	
+	public void SetTimeout(float value)
+	{
+		timeout = value;
+	}
 }
