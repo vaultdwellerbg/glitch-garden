@@ -6,12 +6,12 @@ public class MasterSpawner : MonoBehaviour {
 	public GameObject[] attackerTypes;
 	
 	private Timer[] timers;
-	private GameObject[] activeSpawners;
+	private Spawner[] spawners;
 
 	void Start()
 	{
 		InitTimers();	
-		SetActiveSpawners ();
+		InitSpawners();
 	}
 
 	void InitTimers()
@@ -22,12 +22,12 @@ public class MasterSpawner : MonoBehaviour {
 		}
 	}
 
-	void SetActiveSpawners ()
+	void InitSpawners()
 	{
-		activeSpawners = new GameObject[3];
-		activeSpawners[0] = transform.GetChild(1).gameObject;
-		activeSpawners[1] = transform.GetChild(2).gameObject;
-		activeSpawners[2] = transform.GetChild(3).gameObject;
+		spawners = new Spawner[transform.childCount];	
+		for (int i = 0; i < transform.childCount; i++) {
+			spawners[i] = transform.GetChild(i).GetComponent<Spawner>();
+		}
 	}
 	
 	void Update()
@@ -40,10 +40,9 @@ public class MasterSpawner : MonoBehaviour {
 		}
 	}
 	
-	
 	void SpawnAttacker(GameObject attacker)
 	{
-		int randomIndex = Random.Range(0, activeSpawners.Length - 1);
-		activeSpawners[randomIndex].GetComponent<Spawner>().Spawn(attacker);
+		int randomIndex = Random.Range(0, spawners.Length);
+		spawners[randomIndex].Spawn(attacker);
 	}
 }
