@@ -59,7 +59,11 @@ public class Shooter : MonoBehaviour {
 	
 	private bool LineHasAttackers()
 	{
-		return currentLaneAttackersSpawner.transform.childCount > 0;
+		if (currentLaneAttackersSpawner) 
+		{
+			return currentLaneAttackersSpawner.transform.childCount > 0;		
+		}
+		return false;
 	}	
 	
 	private bool LineHasAttackerBeforeDefender()
