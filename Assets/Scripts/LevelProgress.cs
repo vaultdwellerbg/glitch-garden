@@ -8,7 +8,6 @@ public class LevelProgress : MonoBehaviour {
 	private float levelRuntime = 120;	
 	private float timeSinceStart = 0f;	
 	private Slider levelProgressSlider;
-	private GameObject levelCompletedDisplay;
 	private AudioSource audioSource;
 	private LevelManager levelManager;
 	private bool levelCompleted = false;
@@ -16,8 +15,6 @@ public class LevelProgress : MonoBehaviour {
 	void Start()
 	{
 		levelProgressSlider = GetComponent<Slider>();
-		levelCompletedDisplay = GameObject.Find("LevelCompleted");
-		levelCompletedDisplay.SetActive(false);
 		audioSource = GetComponent<AudioSource>();
 		levelManager = GameObject.FindObjectOfType<LevelManager>();
 	}
@@ -37,7 +34,7 @@ public class LevelProgress : MonoBehaviour {
 	void EndLevel ()
 	{
 		levelCompleted = true;
-		levelCompletedDisplay.SetActive(true);
+		GameObject.FindObjectOfType<MessagesController>().ShowLevelComplete();
 		audioSource.Play();
 		Invoke ("LoadNextLevel", audioSource.clip.length);
 	}
