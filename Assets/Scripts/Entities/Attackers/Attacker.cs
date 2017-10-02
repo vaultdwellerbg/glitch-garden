@@ -34,7 +34,9 @@ public class Attacker : MonoBehaviour {
 	}
 	
 	public void StrikeCurrentTarget(float damage)
-	{		
+	{	
+		if (!currentTarget) return;
+			
 		Health targetHealth = currentTarget.GetComponent<Health>();
 		targetHealth.DealDamage(damage);
 	}
