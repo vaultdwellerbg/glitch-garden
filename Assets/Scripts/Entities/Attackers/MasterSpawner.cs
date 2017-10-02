@@ -37,10 +37,15 @@ public class MasterSpawner : MonoBehaviour {
 	
 	void Update()
 	{
-		if (levelProgress.GetRemainingTime() < 40 && !finalAttackStarted)
+		float remainingTime = levelProgress.GetRemainingTime();
+	
+		if (remainingTime < 10) return;
+	
+		if (remainingTime < 40 && !finalAttackStarted)
 		{
 			StartFinalAttack();
 		}
+		
 		SpawnAttackers();
 	}
 	
