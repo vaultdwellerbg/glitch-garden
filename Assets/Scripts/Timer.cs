@@ -5,10 +5,12 @@ public class Timer {
 
 	private float time = 0;
 	private float timeout = 0;
+	private float shortTimeout = 0;
 	
-	public Timer(GameObject attacker)
+	public Timer(float timeout, float shortTimeout)
 	{
-		timeout = attacker.GetComponent<Attacker>().secondsToShow;
+		this.timeout = timeout; 
+		this.shortTimeout = shortTimeout;
 	}
 	
 	public bool IsTimeToSpawn(float frameTime)
@@ -22,8 +24,8 @@ public class Timer {
 		return false;
 	}
 	
-	public void SetTimeout(float value)
+	public void SetShortTimeout()
 	{
-		timeout = value;
+		timeout = shortTimeout;
 	}
 }

@@ -9,8 +9,6 @@ public class MasterSpawner : MonoBehaviour {
 	private Spawner[] spawners;
 	private LevelProgress levelProgress;
 	private bool finalAttackStarted = false;
-	
-	private const int FINAL_ATTACK_TIMEOUT = 1;
 
 	void Start()
 	{
@@ -23,8 +21,14 @@ public class MasterSpawner : MonoBehaviour {
 	{
 		timers = new Timer[attackerTypes.Length];
 		for (int i = 0; i < attackerTypes.Length; i++) {
-			timers [i] = new Timer (attackerTypes[i]);
+			timers[i] = CreateTimer(attackerTypes[i]);
 		}
+	}
+	
+	private Timer CreateTimer(GameObject attackerObj)
+	{
+		Attacker attacker = attackerObj.GetComponent<Attacker>();
+		return new Timer(attacker.secondsToShow, attacker.finalWaveSecondsToShow);		
 	}
 
 	void InitSpawners()
@@ -54,7 +58,7 @@ public class MasterSpawner : MonoBehaviour {
 		finalAttackStarted = true;
 		GameObject.FindObjectOfType<MessagesController>().ShowFinalWave();
 		for (int i = 0; i < timers.Length; i++) {
-			timers[i].SetTimeout(FINAL_ATTACK_TIMEOUT);
+			timers[i].SetShortTimeout();
 		}
 	}
 	

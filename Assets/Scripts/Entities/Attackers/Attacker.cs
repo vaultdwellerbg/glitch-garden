@@ -6,6 +6,7 @@ public class Attacker : MonoBehaviour {
 
 	[Tooltip("Number of seconds between creating new attacker")]
 	public float secondsToShow;
+	public float finalWaveSecondsToShow;
 
 	private float speed;
 	private GameObject currentTarget;
