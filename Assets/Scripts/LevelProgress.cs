@@ -5,7 +5,8 @@ using System.Collections;
 public class LevelProgress : MonoBehaviour {
 
 	[Tooltip("Level runtime in seconds")]
-	private float levelRuntime = 120;	
+	public float levelRuntime = 120;	
+	
 	private float timeSinceStart = 0f;	
 	private Slider levelProgressSlider;
 	private AudioSource audioSource;
