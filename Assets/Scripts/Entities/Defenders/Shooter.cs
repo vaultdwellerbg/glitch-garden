@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class Shooter : MonoBehaviour {
 
 	public GameObject projectile;
@@ -81,6 +82,7 @@ public class Shooter : MonoBehaviour {
 	{	
 		GameObject newProjectile = Instantiate (projectile) as GameObject;
 		PositionProjectile(newProjectile);
+		GetComponent<AudioSource>().Play();
 	}
 	
 	private void PositionProjectile(GameObject projectile)
