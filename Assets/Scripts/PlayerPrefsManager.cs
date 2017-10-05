@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerPrefsManager : MonoBehaviour {
 
 	const string MASTER_VOLUME_KEY = "master_volume";
-	const string LEVEL_KEY = "level_unlocked_";
+	const string LEVEL_KEY = "level_unlocked";
 	const string DIFFICULTY_KEY = "difficulty";	
 
 	#region master volume
@@ -30,35 +30,14 @@ public class PlayerPrefsManager : MonoBehaviour {
 	#endregion
 	
 	#region unlock level
-	public static void UnlockLevel(int level)
+	public static void SetUnlockedLevel(int level)
 	{
-		if (IsLevelInBuildOrder(level))
-		{
-			PlayerPrefs.SetInt(LEVEL_KEY + level.ToString(), 1);
-		}
-		else
-		{
-			Debug.LogError("Level not in build order");
-		}
+		PlayerPrefs.SetInt(LEVEL_KEY, level);
 	}
 	
-	static bool IsLevelInBuildOrder(int level)
-	{
-		return level <= Application.levelCount - 1;
-	}
-	
-	public static bool IsLevelUnlocked(int level)
+	public static int GetUnlockedLevel()
 	{	
-		if (IsLevelInBuildOrder(level))
-		{
-			int isUnlocked = PlayerPrefs.GetInt(LEVEL_KEY + level.ToString());
-			return isUnlocked == 1;
-		} 
-		else
-		{
-			Debug.LogError("Level not in build order");
-			return false;
-		}	
+		return PlayerPrefs.GetInt(LEVEL_KEY);
 	}
 	
 	#endregion
