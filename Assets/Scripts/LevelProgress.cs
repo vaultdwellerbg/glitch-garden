@@ -37,10 +37,7 @@ public class LevelProgress : MonoBehaviour {
 		levelCompleted = true;
 		GameObject.FindObjectOfType<MessagesController>().ShowLevelComplete();
 		audioSource.Play();
-		
-		int levelToUnlock = (Application.loadedLevelName == "Level_03") ? 3 : Application.loadedLevel + 1;
-		PlayerPrefsManager.SetUnlockedLevel(levelToUnlock);
-		
+		GameProgress.SetLevel(Application.loadedLevel);	
 		Invoke("LoadNextLevel", audioSource.clip.length);
 	}
 	

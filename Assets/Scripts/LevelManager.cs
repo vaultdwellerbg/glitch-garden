@@ -15,10 +15,7 @@ public class LevelManager : MonoBehaviour {
 	
 	public void LoadUnlockedLevel()
 	{
-		int unlockedLevel = PlayerPrefsManager.GetUnlockedLevel();
-		if (unlockedLevel == 0) unlockedLevel = 3;
-		Debug.Log("Loading level " + unlockedLevel);
-		LoadLevel(unlockedLevel);
+		LoadLevel(GameProgress.GetLevel());
 	}
 	
 	public void QuitRequest() 
