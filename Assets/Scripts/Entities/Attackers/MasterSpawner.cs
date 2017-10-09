@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MasterSpawner : MonoBehaviour {
 
@@ -28,7 +29,8 @@ public class MasterSpawner : MonoBehaviour {
 	private Timer CreateTimer(GameObject attackerObj)
 	{
 		Attacker attacker = attackerObj.GetComponent<Attacker>();
-		return new Timer(attacker.secondsToShow, attacker.finalWaveSecondsToShow);		
+		Dictionary<string, float> values = DifficultyController.GetValues(attacker.name.ToLower());
+		return new Timer(values["secondsToShow"], values["finalWaveSecondsToShow"]);		
 	}
 
 	void InitSpawners()
